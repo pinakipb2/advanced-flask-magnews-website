@@ -1,0 +1,405 @@
+{% extends "admin/layout.html" %}
+{% block title %}Bug Report{% endblock %}
+{% block body %}
+
+             <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li>
+          <a href="/admin/dashboard">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-thumb-tack"></i>
+            <span>Posts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{url_for('admin_all_posts')}}"><i class="fa fa-circle-o text-red"></i> All Posts</a></li>
+            <li><a href="{{url_for('admin_add_post')}}"><i class="fa fa-circle-o text-yellow"></i> Add New</a></li>
+            <li><a href="/admin/manage-user-posts"><i class="fa fa-circle-o text-aqua"></i> Manage User Posts</a></li>
+            <li><a href="/admin/published-posts"><i class="fa fa-circle-o text-orange"></i> Published Posts</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-tags"></i>
+            <span>Categories</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/all-categories"><i class="fa fa-circle-o text-red"></i> All Categories</a></li>
+            <li><a href="/admin/add-category"><i class="fa fa-circle-o text-yellow"></i> Add New</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="/admin/upload-image">
+            <i class="fa fa-image"></i> <span>Images</span>
+          </a>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/mail/compose"><i class="fa fa-circle-o text-red"></i> Compose</a></li>
+            <li><a href="/admin/mail/inbox"><i class="fa fa-circle-o text-yellow"></i> Inbox</a></li>
+            <li><a href="/admin/mail/sent"><i class="fa fa-circle-o text-aqua"></i> Sent</a></li>
+          </ul>
+        </li>
+
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user"></i> <span>Profile</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/profile"><i class="fa fa-circle-o text-red"></i> Profile</a></li>
+
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o text-yellow"></i> Options
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/admin/profile-edit"><i class="fa fa-circle-o text-red"></i> Edit Profile</a></li>
+                <li><a href="/admin/change-password"><i class="fa fa-circle-o text-yellow"></i> Change Password</a></li>
+                <li><a href="/admin/two-step-verification"><i class="fa fa-circle-o text-aqua"></i> Two Step Verification</a></li>
+                <li><a href="/admin/dark-mode"><i class="fa fa-circle-o text-maroon"></i> Dark Mode</a></li>
+              </ul>
+            </li>
+            <li><a href="/admin-logout"><i class="fa fa-circle-o text-aqua"></i> Logout</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="/admin/api">
+            <i class="fa fa-book"></i> <span>API</span>
+          </a>
+        </li>
+
+        <li class="header">EXTRAS</li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i>
+            <span>Manage All Users</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/all-admins"><i class="fa fa-circle-o text-red"></i> All Admins</a></li>
+            <li><a href="/admin/all-users"><i class="fa fa-circle-o text-yellow"></i> All Users</a></li>
+            <li><a href="/admin/add-user"><i class="fa fa-circle-o text-aqua"></i> Add User</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/admin/admin-registration-code">
+            <i class="fa fa-code"></i> <span>Admin Registration Code</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/contact-list">
+            <i class="fa fa-envelope"></i> <span>Contact</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="/admin/all-bug-reports">
+            <i class="fa fa-bug"></i> <span>Bug Reports</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+        <section class="content-header">
+      <h1>
+        Bug Reports
+        <small>Manage Bug Reports</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{{url_for('admin_dash')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Bug Reports</li>
+      </ol>
+    </section>
+
+
+    <section class="content">
+      
+{% with messages = get_flashed_messages(category_filter=["success"]) %}
+  {% if messages %}
+    <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-check"></i> Success!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+      
+{% with messages = get_flashed_messages(category_filter=["warning"]) %}
+  {% if messages %}
+    <div class="alert alert-warning alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-warning"></i> Warning!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}   
+
+      
+{% with messages = get_flashed_messages(category_filter=["danger"]) %}
+  {% if messages %}
+    <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+        
+            <!-- Main content -->
+    <section class="invoice">
+      <!-- title row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-bug"></i> {{params['blog_name']}}
+            <small class="pull-right">Date: {{bug.sub_date.strftime('%d %B, %Y')}}</small>
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+          From
+          <address>
+            <strong>{{bug.submitted_by}}</strong><br>
+            Email: {{bug.email}}
+          </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          To
+          <address>
+            <strong>{{params['blog_name']}}</strong>
+          </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <b>Bug Id #{{bug.id}}</b><br>
+          <br>
+          <b>Found on : </b> {{bug.bug_date}}
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Id</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>URL</th>
+              <th>Platform</th>
+              <th>Browser</th>
+              <th>Expected Behaviour</th>
+              <th>Actual Behaviour</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{{bug.id}}</td>
+              <td>{{bug.title}}</td>
+              <td>{{bug.bug_desc}}</td>
+              <td><a href="{{bug.bug_url}}" target="_blank">{{bug.bug_url}}</a></td>
+              <td>{{bug.platform}}</td>
+              <td>{{bug.browser}}</td>
+              <td>{{bug.expected_res}}</td>
+              <td>{{bug.actual_res}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-6">
+          <p class="lead">Screenshots : </p>
+          {% set fname='images/bugscreenshots/'+bug.scrnshot %}
+          <img src="{{url_for('static',filename=fname)}}" alt="Screenshot" width="150px" height="100px">
+
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            Right Click on the image and then click open image in new tab to see the full size picture.
+          </p>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+          {% if bug.status==0 %}
+          <p class="lead">Bug Status : Unresolved</p>
+          {% endif %}
+          {% if bug.status==1 %}
+          <p class="lead">Bug Status : Resolved</p>
+          {% endif %}
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- this row will not appear when printing -->
+      <div class="row no-print">
+        <div class="col-xs-12">
+          <a href="/admin/print-bug-report/{{bug.id}}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+          {% if bug.status==0 %}
+          
+          <button type="button" class="btn btn-success pull-right"  data-toggle="modal" data-target="#modal-success"><i class="fa fa-check"></i> Mark as Resolved</button>
+          
+          {% endif %}
+          {% if bug.status==1 %}
+          
+          <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modal-warning"><i class="fa fa-times"></i> Mark as Unresolved</button>
+
+          <button type="button" class="btn btn-danger pull-right" style="margin-right: 5px;" data-toggle="modal" data-target="#modal-danger">
+            <i class="fa fa-trash"></i> Delete
+          </button>
+          
+          {% endif %}
+
+        </div>
+      </div>
+    </section>
+
+    
+        <form method="POST" action="/admin/bug-unresolved/{{bug.id}}">
+        <div class="modal modal-warning fade" id="modal-warning">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Do you want to mark bug id #{{bug.id}} unresolved ?</h4>
+              </div>
+              <div class="modal-body">
+                <p>Bug id #{{bug.id}} will be marked unresolved.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline">Mark as Unresolved</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        </form>
+
+
+
+          <form method="POST" action="/admin/bug-resolved/{{bug.id}}">
+            <div class="modal modal-success fade" id="modal-success">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Do you want to mark bug id #{{bug.id}} resolved ?</h4>
+              </div>
+              <div class="modal-body">
+                <p>Bug id #{{bug.id}} will be marked resolved.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline">Mark as Resolved</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        </form>
+
+
+
+        <form method="POST" action="/admin/delete-bug-report/{{bug.id}}">
+        <div class="modal modal-danger fade" id="modal-danger">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Are you sure you want to delete bug id #{{bug.id}} ?</h4>
+              </div>
+              <div class="modal-body">
+                <p>Bug id #{{bug.id}} will be permanently deleted with all information related to it.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline">Delete</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        </form>
+
+
+
+
+
+
+
+
+</section>
+
+
+
+  
+
+
+
+        <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+{% endblock %}

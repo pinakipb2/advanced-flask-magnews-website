@@ -1,0 +1,513 @@
+{% extends "admin/layout.html" %}
+{% block title %}Admin API{% endblock %}
+{% block body %}
+
+             <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li>
+          <a href="/admin/dashboard">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-thumb-tack"></i>
+            <span>Posts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{url_for('admin_all_posts')}}"><i class="fa fa-circle-o text-red"></i> All Posts</a></li>
+            <li><a href="{{url_for('admin_add_post')}}"><i class="fa fa-circle-o text-yellow"></i> Add New</a></li>
+            <li><a href="/admin/manage-user-posts"><i class="fa fa-circle-o text-aqua"></i> Manage User Posts</a></li>
+            <li><a href="/admin/published-posts"><i class="fa fa-circle-o text-orange"></i> Published Posts</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-tags"></i>
+            <span>Categories</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/all-categories"><i class="fa fa-circle-o text-red"></i> All Categories</a></li>
+            <li><a href="/admin/add-category"><i class="fa fa-circle-o text-yellow"></i> Add New</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="/admin/upload-image">
+            <i class="fa fa-image"></i> <span>Images</span>
+          </a>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/mail/compose"><i class="fa fa-circle-o text-red"></i> Compose</a></li>
+            <li><a href="/admin/mail/inbox"><i class="fa fa-circle-o text-yellow"></i> Inbox</a></li>
+            <li><a href="/admin/mail/sent"><i class="fa fa-circle-o text-aqua"></i> Sent</a></li>
+          </ul>
+        </li>
+
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user"></i> <span>Profile</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/profile"><i class="fa fa-circle-o text-red"></i> Profile</a></li>
+
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o text-yellow"></i> Options
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/admin/profile-edit"><i class="fa fa-circle-o text-red"></i> Edit Profile</a></li>
+                <li><a href="/admin/change-password"><i class="fa fa-circle-o text-yellow"></i> Change Password</a></li>
+                <li><a href="/admin/two-step-verification"><i class="fa fa-circle-o text-aqua"></i> Two Step Verification</a></li>
+                <li><a href="/admin/dark-mode"><i class="fa fa-circle-o text-maroon"></i> Dark Mode</a></li>
+              </ul>
+            </li>
+            <li><a href="/admin-logout"><i class="fa fa-circle-o text-aqua"></i> Logout</a></li>
+          </ul>
+        </li>
+
+        <li class="active">
+          <a href="/admin/api">
+            <i class="fa fa-book"></i> <span>API</span>
+          </a>
+        </li>
+
+        <li class="header">EXTRAS</li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i>
+            <span>Manage All Users</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/all-admins"><i class="fa fa-circle-o text-red"></i> All Admins</a></li>
+            <li><a href="/admin/all-users"><i class="fa fa-circle-o text-yellow"></i> All Users</a></li>
+            <li><a href="/admin/add-user"><i class="fa fa-circle-o text-aqua"></i> Add User</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/admin/admin-registration-code">
+            <i class="fa fa-code"></i> <span>Admin Registration Code</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/contact-list">
+            <i class="fa fa-envelope"></i> <span>Contact</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/all-bug-reports">
+            <i class="fa fa-bug"></i> <span>Bug Reports</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+        <section class="content-header">
+      <h1>
+        API Key
+        <small>Manage API Key</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{{url_for('admin_dash')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">API Key</li>
+      </ol>
+    </section>
+
+
+    <section class="content">
+
+          
+{% with messages = get_flashed_messages(category_filter=["success"]) %}
+  {% if messages %}
+    <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-check"></i> Success!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+      
+{% with messages = get_flashed_messages(category_filter=["warning"]) %}
+  {% if messages %}
+    <div class="alert alert-warning alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-warning"></i> Warning!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}   
+
+      
+{% with messages = get_flashed_messages(category_filter=["danger"]) %}
+  {% if messages %}
+    <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}    
+
+
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-info">
+            <div class="box-header">
+            	<i class="fa fa-key" aria-hidden="true"></i>
+              <h3 class="box-title">Admin API Key</h3>
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>Name</th>
+                  <th>Key</th>
+                  <th>Status</th>
+                  <th>Change</th>
+                </tr>
+                <tr>
+                  <td>Admin API Key</td>
+                  <td>{{user.apikey}}</td>
+                  <td><span class="label label-success">ACTIVE</span></td>
+                  <form action="/admin/change-api" method="POST">
+                  <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
+                <i class="fa fa-recycle" aria-hidden="true"></i>
+              </button></td>
+                </tr>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+    
+
+
+            <div class="modal modal-danger fade" id="modal-danger">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Do you want to change your API Key ?</h4>
+              </div>
+              <div class="modal-body">
+                <p>Your API Key will be changed.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline">Change</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        </form>
+
+
+
+<h1 class="page-header">API Documentation</h1>
+ <div class="row">
+        <div class="col-md-12">
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <i class="fa fa-link"></i>
+
+              <h3 class="box-title">Base URL</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+              <p class="text-green">HTTP: <strong>http://127.0.0.1:5000/api/v1.0/magnews</strong></p>
+			  <p class="text-green">HTTPS: <strong>https://127.0.0.1:5000/api/v1.0/magnews</strong></p>
+		      <p class="text-red">Supported Methods: GET</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+        <div class="col-md-12">
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <i class="fa fa-link"></i>
+
+              <h3 class="box-title">Request Parameters</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+              <p class="text-black"><strong>key = [key] (REQUIRED)</strong></p>
+              <ul>
+              	<li>
+              		<p class="text-green"><code>key</code> - Your API Key.</p>
+              	</li>
+              </ul>
+              <p class="text-black"><strong>ID = [ID] (OPTIONAL)</strong></p>
+			         <ul>
+                <li>
+                  <p class="text-green"><code>ID</code> - Post ID.</p>
+                </li>
+              </ul>
+              
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+        <div class="col-md-12">
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <i class="fa fa-link"></i>
+
+              <h3 class="box-title">Example Request</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+            <p class="text-black"><strong>All Posts: </strong>
+			<code>https://127.0.0.1:5000/api/v1.0/magnews?key=API_KEY</code></p>
+
+
+			<p class="text-black"><strong>Posts by ID: </strong>
+			<code>https://127.0.0.1:5000/api/v1.0/magnews/ID?key=API_KEY</code></p>
+
+			  
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+
+        <div class="col-md-12">
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <i class="fa fa-link"></i>
+
+              <h3 class="box-title">Example Response (JSON)</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            	<p class="text-black"><strong>All Posts: </strong></p>
+<pre class="language-json language-html">
+	<code class="language-json language-html">
+		{
+  "blog_posts": [
+    {
+      "id": 1,
+      "title": "My First Title",
+      "slug": "my-first-title",
+      "content": "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium suscipit eros.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>\r\n",
+      "category": "Technology",
+      "image": "5dadd253ed2c3ca09d539be23e.png",
+      "author": "johndoe",
+      "views": 17384,
+      "published_at": "Sat, 11 Jul 2020 11:04:56 GMT"
+    },
+    {
+      "id": 2,
+      "title": "My Second Ttitle",
+      "slug": "my-second-title",
+      "content": "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium suscipit eros.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>\r\n",
+      "category": "Travel",
+      "image": "4d923af9f8b250c219a379e087.png",
+      "author": "janedoe",
+      "views": 15627,
+      "published_at": "Sun, 12 Jul 2020 08:34:39 GMT"
+    }
+  ],
+  "count": 2
+}
+	</code>
+</pre>
+
+<p class="text-black"><strong>Posts by ID: </strong></p>
+
+<pre class="language-json language-html">
+	<code class="language-json language-html">
+		{
+  "blog_post": [
+    {
+      "id": 1,
+      "title": "my first title",
+      "slug": "demo-slug",
+      "content": "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium suscipit eros.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>\r\n",
+      "category": "Technology",
+      "image": "5dadd253ed2c3ca09d539be23e.png",
+      "author": "johndoe",
+      "views": 17384,
+      "published_at": "Sat, 11 Jul 2020 11:04:56 GMT"
+    }
+  ]
+}
+	</code>
+</pre>
+
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+        <div class="col-md-12">
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <i class="fa fa-link"></i>
+
+              <h3 class="box-title">Field Descriptions</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+              <ul>
+              	<li>
+              		<p class="text-green"><code>count:</code> Count of returned observations.</p>
+              	</li>
+              	<li>
+              		<p class="text-green"><code>blog_post: [</code></p>
+              	</li>
+              	<ul>
+              	<li>
+              		<p class="text-black"><code>id:</code> Post ID.</p>
+              	</li>
+              	<li>
+              		<p class="text-black"><code>title:</code> Post Title.</p>
+              	</li>
+              	<li>
+              		<p class="text-black"><code>slug:</code> Post Slug.</p>
+              	</li>
+              	<li>
+              		<p class="text-black"><code>content:</code> Post Content.</p>
+              	</li>
+              	<li>
+              		<p class="text-black"><code>category:</code> Post Category.</p>
+              	</li>
+              	<li>
+              		<p class="text-black"><code>image:</code> Post Image.</p>
+              	</li>
+              	<li>
+              		<p class="text-black"><code>author:</code> Post Author.</p>
+              	</li>
+              	<li>
+              		<p class="text-black"><code>views:</code> Post Views.</p>
+              	</li>
+              	<li>
+              		<p class="text-black"><code>published_at:</code> Post Publishing Date.</p>
+              	</li>
+              	</ul>
+              	<li>
+              		<p class="text-green"><code>]</code></p>
+              	</li>
+              </ul>
+			  
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+</section>
+
+
+  <link rel="stylesheet" href="{{url_for('static',filename='prism.css')}}">
+
+  <script src="{{url_for('static',filename='prism.js')}}"></script>
+  
+
+
+
+        <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

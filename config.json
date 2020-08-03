@@ -1,0 +1,24 @@
+{
+  "params":
+  {
+    "local_server": "True",
+    "local_uri":"mysql://root:@localhost/myblog",
+    "prod_uri": "mysql+pymysql://root:@localhost/myblog",
+    "fb_url": "https://www.facebook.com/magnews/",
+    "tw_url": "https://www.twitter.com/magnews/",
+    "pin_url": "https://www.pinterest.com/magnews/",
+    "vim_url": "https://www.vimeo.com/magnews/",
+    "you_url": "https://www.youtube.com/magnews/",
+    "blog_name": "Magnews",
+    "gmail_user" : "john@john.com",
+    "gmail_password" : "JohnDoe123",
+    "no_of_blog_posts": 10,
+    "no_of_author_posts": 10,
+    "no_of_category_posts": 10,
+    "header_banner_ad_url": "https://pinakipb2.blogspot.com/",
+    "center_banner_ad_url": "https://pinakipb2.blogspot.com/",
+    "sidebar_ad_url": "https://pinakipb2.blogspot.com/"
+  }
+
+
+}

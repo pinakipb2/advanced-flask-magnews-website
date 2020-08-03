@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bug Report {{bug.id}} | AdminPANEL</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <link rel="icon" type="image/png" href="{{url_for('static', filename='images/icons/favicon.png')}}"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="{{url_for('static',filename='admin/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{url_for('static',filename='admin/bower_components/font-awesome/css/font-awesome.min.css')}}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="{{url_for('static',filename='admin/bower_components/Ionicons/css/ionicons.min.css')}}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{url_for('static',filename='admin/dist/css/AdminLTE.min.css')}}">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body onload="window.print();">
+<div class="wrapper">
+  <!-- Main content -->
+  <section class="invoice">
+    <!-- title row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-bug"></i> {{params['blog_name']}}
+            <small class="pull-right">Date: {{bug.sub_date.strftime('%d %B, %Y')}}</small>
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+          From
+          <address>
+            <strong>{{bug.submitted_by}}</strong><br>
+            Email: {{bug.email}}
+          </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          To
+          <address>
+            <strong>{{params['blog_name']}}</strong>
+          </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <b>Bug Id #{{bug.id}}</b><br>
+          <br>
+          <b>Found on : </b> {{bug.bug_date}}
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+  <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Id</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>URL</th>
+              <th>Platform</th>
+              <th>Browser</th>
+              <th>Expected Behaviour</th>
+              <th>Actual Behaviour</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{{bug.id}}</td>
+              <td>{{bug.title}}</td>
+              <td>{{bug.bug_desc}}</td>
+              <td><a href="{{bug.bug_url}}" target="_blank">{{bug.bug_url}}</a></td>
+              <td>{{bug.platform}}</td>
+              <td>{{bug.browser}}</td>
+              <td>{{bug.expected_res}}</td>
+              <td>{{bug.actual_res}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.col -->
+      </div>
+       <!-- /.row -->
+
+      <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-6">
+          <p class="lead">Screenshots : </p>
+          {% set fname='images/bugscreenshots/'+bug.scrnshot %}
+          <img src="{{url_for('static',filename=fname)}}" alt="Screenshot" width="350px" height="200px">
+
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+          {% if bug.status==0 %}
+          <p class="lead">Bug Status : Unresolved</p>
+          {% endif %}
+          {% if bug.status==1 %}
+          <p class="lead">Bug Status : Resolved</p>
+          {% endif %}
+        </div>
+        <!-- /.col -->
+      </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

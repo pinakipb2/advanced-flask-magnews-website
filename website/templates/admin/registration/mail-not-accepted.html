@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title>Mail not Accepted | {{ params['blog_name'] }}</title>
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/icons/favicon.png')}}"/>
+      <!-- bootstrap.min css -->
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}">
+  <!-- Animate Css -->
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='vendor/animate/animate.css')}}">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+
+</head>
+
+
+<body style="background-color: lightyellow;">
+
+    <section class="banner-area">
+        <!-- Content -->
+        <div class="container" >
+            <div class="row  align-items-center">
+                <div class="col-md-12 col-lg-7 text-center text-lg-left">
+                    <div class="main-banner">
+                        <!-- Heading -->
+                        <h1 class="display-3 mb-4 font-weight-normal">
+                            Sorry! 
+                        </h1>
+
+
+                        <!-- Subheading -->
+                        <p class="lead mb-4">
+                            Thank you for choosing {{params['blog_name']}}.
+                        </p>
+                        <p class="lead mb-4">
+                           The mail you have entered is not valid. According to our policies, only a email with .com domain can register as of now.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="banner-img-block">
+                        <img src="{{url_for('static',filename='images/sorry.png')}}" alt="banner-img" class="img-fluid">
+                    </div>
+                </div>
+            </div> <!-- / .row -->
+        </div> <!-- / .container -->
+    </section>
+
+
+
+        
+
+
+
+
+
+
+  </body>
+  </html>
+   

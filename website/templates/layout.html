@@ -1,0 +1,5048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>{% block title %}{% endblock %} | {{ params['blog_name'] }}</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{{url_for('static', filename='images/icons/favicon.png')}}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='fonts/fontawesome-5.0.8/css/fontawesome-all.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='fonts/iconic/css/material-design-iconic-font.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='vendor/animate/animate.css')}}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='vendor/animsition/css/animsition.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/util.min.css')}}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+
+</head>
+<body class="animsition">
+	
+	<!-- Header -->
+	<header>
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<div class="topbar">
+				<div class="content-topbar container h-100">
+					<div class="left-topbar">
+						<a href="/bug-report-form" class="left-topbar-item" target="_blank">
+							Report a Bug
+						</a>
+
+						<a href="/about" class="left-topbar-item">
+							About
+						</a>
+
+						<a href="/contact" class="left-topbar-item">
+							Contact
+						</a>
+
+						<a href="/signup" class="left-topbar-item">
+							Sign up
+						</a>
+
+						<a href="/login" class="left-topbar-item">
+							Log in
+						</a>
+						
+					</div>
+
+					<div class="right-topbar">
+						<a href="{{params['fb_url']}}" target="_blank">
+							<span class="fab fa-facebook-f"></span>
+						</a>
+
+						<a href="{{params['tw_url']}}" target="_blank">
+							<span class="fab fa-twitter"></span>
+						</a>
+
+						<a href="{{params['pin_url']}}" target="_blank">
+							<span class="fab fa-pinterest-p"></span>
+						</a>
+
+						<a href="{{params['vim_url']}}" target="_blank">
+							<span class="fab fa-vimeo-v"></span>
+						</a>
+
+						<a href="{{params['you_url']}}" target="_blank">
+							<span class="fab fa-youtube"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Header Mobile -->
+			<div class="wrap-header-mobile">
+				<!-- Logo moblie -->		
+				<div class="logo-mobile">
+					<a href="/"><img src="{{url_for('static', filename='images/icons/logo-01.png')}}" alt="{{ params['blog_name'] }}"></a>
+				</div>
+
+				<!-- Button show menu -->
+				<div class="btn-show-menu-mobile hamburger hamburger--squeeze m-r--8">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+				</div>
+			</div>
+
+			<!-- Menu Mobile -->
+			<div class="menu-mobile">
+				<ul class="topbar-mobile">
+					<li class="left-topbar">
+						<a href="/bug-report-form" class="left-topbar-item" target="_blank">
+							Report a Bug
+						</a>
+
+						<a href="/about" class="left-topbar-item">
+							About
+						</a>
+
+						<a href="/contact" class="left-topbar-item">
+							Contact
+						</a>
+
+						<a href="/signup" class="left-topbar-item">
+							Sign up
+						</a>
+
+						<a href="/login" class="left-topbar-item">
+							Log in
+						</a>
+					</li>
+
+					<li class="right-topbar">
+						<a href="{{params['fb_url']}}" target="_blank">
+							<span class="fab fa-facebook-f"></span>
+						</a>
+
+						<a href="{{params['tw_url']}}" target="_blank">
+							<span class="fab fa-twitter"></span>
+						</a>
+
+						<a href="{{params['pin_url']}}" target="_blank">
+							<span class="fab fa-pinterest-p"></span>
+						</a>
+
+						<a href="{{params['vim_url']}}" target="_blank">
+							<span class="fab fa-vimeo-v"></span>
+						</a>
+
+						<a href="{{params['you_url']}}" target="_blank">
+							<span class="fab fa-youtube"></span>
+						</a>
+					</li>
+				</ul>
+
+				<ul class="main-menu-m">
+					<li>
+						<a href="/">Home</a>
+						
+					</li>
+
+					{% for cat in categorylist[0:1] %}
+					<li>
+						<a href="/category/{{cat.name}}">{{cat.name}}</a>
+					</li>
+					{% endfor %}
+
+					{% for cat in categorylist[6:7] %}
+					<li>
+						<a href="/category/{{cat.name}}">{{cat.name}}</a>
+					</li>
+					{% endfor %}
+
+					{% for cat in categorylist[9:10] %}
+					<li>
+						<a href="/category/{{cat.name}}">{{cat.name}}</a>
+					</li>
+					{% endfor %}
+
+					{% for cat in categorylist[11:12] %}
+					<li>
+						<a href="/category/{{cat.name}}">{{cat.name}}</a>
+					</li>
+					{% endfor %}
+
+					{% for cat in categorylist[13:14] %}
+					<li>
+						<a href="/category/{{cat.name}}">{{cat.name}}</a>
+					</li>
+					{% endfor %}
+
+					{% for cat in categorylist[14:15] %}
+					<li>
+						<a href="/category/{{cat.name}}">{{cat.name}}</a>
+					</li>
+					{% endfor %}
+
+					<li>
+						<a href="#">Features</a>
+						<ul class="sub-menu-m">
+							<li><a href="/about">About Us</a></li>
+							<li><a href="/contact">Contact Us</a></li>
+							<li><a href="/bug-report-form" target="_blank">Report a Bug</a></li>
+						</ul>
+
+						<span class="arrow-main-menu-m">
+							<i class="fa fa-angle-right" aria-hidden="true"></i>
+						</span>
+					</li>
+				</ul>
+			</div>
+			
+			<!--  -->
+			<div class="wrap-logo container">
+				<!-- Logo desktop -->		
+				<div class="logo">
+					<a href="/"><img src="{{url_for('static', filename='images/icons/logo-01.png')}}" alt="{{ params['blog_name'] }}"></a>
+				</div>	
+
+				<!-- Banner -->
+				<div class="banner-header">
+					<a href="{{params['header_banner_ad_url']}}" target="_blank"><img src="{{url_for('static', filename='images/banner-01.jpg')}}" alt="{{ params['blog_name'] }}"></a>
+				</div>
+			</div>	
+			
+			<!--  -->
+			<div class="wrap-main-nav">
+				<div class="main-nav">
+					<!-- Menu desktop -->
+					<nav class="menu-desktop">
+						<a class="logo-stick" href="/">
+							<img src="{{url_for('static', filename='images/icons/logo-01.png')}}" alt="{{ params['blog_name'] }}">
+						</a>
+
+						<ul class="main-menu">
+							<li class="main-menu">
+								<a href="/">Home</a>
+							</li>
+
+							{% if categorylist[0:1] %}
+
+							<li class="mega-menu-item">
+								{% for cat in categorylist[0:1] %}
+								<a href="#">{{cat.name}}</a>
+								{% endfor %}								
+								
+								<div class="sub-mega-menu">
+									<div class="nav flex-column nav-pills" role="tablist">
+										<a class="nav-link active" data-toggle="pill" href="#category-1" role="tab">All</a>
+
+										
+										{% for cat in categorylist[1:2] %}
+										<a class="nav-link" data-toggle="pill" href="#category-2" role="tab">{{cat.name}}</a>
+										{% endfor %}
+										{% for cat in categorylist[2:3] %}
+										<a class="nav-link" data-toggle="pill" href="#category-3" role="tab">{{cat.name}}</a>
+										{% endfor %}
+										{% for cat in categorylist[3:4] %}
+										<a class="nav-link" data-toggle="pill" href="#category-4" role="tab">{{cat.name}}</a>
+										{% endfor %}
+										{% for cat in categorylist[4:5] %}
+										<a class="nav-link" data-toggle="pill" href="#category-5" role="tab">{{cat.name}}</a>
+										{% endfor %}
+										{% for cat in categorylist[5:6] %}
+										<a class="nav-link" data-toggle="pill" href="#category-6" role="tab">{{cat.name}}</a>
+										{% endfor %}
+									</div>
+
+									<div class="tab-content">
+										{% for cat in categorylist[0:1] %}
+										<div class="tab-pane show active" id="category-1" role="tabpanel">
+											{% endfor %}
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat1[0:1] %}
+												{% for post in cat1[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat1[1:2] %}
+												{% for post in cat1[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat1[2:3] %}
+												{% for post in cat1[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat1[3:4] %}
+												{% for post in cat1[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+										<div class="tab-pane" id="category-2" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat2[0:1] %}
+												{% for post in cat2[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat2[1:2] %}
+												{% for post in cat2[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat2[2:3] %}
+												{% for post in cat2[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat2[3:4] %}
+												{% for post in cat2[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+										<div class="tab-pane" id="category-3" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat3[0:1] %}
+												{% for post in cat3[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat3[1:2] %}
+												{% for post in cat3[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat3[2:3] %}
+												{% for post in cat3[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat3[3:4] %}
+												{% for post in cat3[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+										<div class="tab-pane" id="category-4" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat4[0:1] %}
+												{% for post in cat4[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat4[1:2] %}
+												{% for post in cat4[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat4[2:3] %}
+												{% for post in cat4[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat4[3:4] %}
+												{% for post in cat4[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+										<div class="tab-pane" id="category-5" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat5[0:1] %}
+												{% for post in cat5[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat5[1:2] %}
+												{% for post in cat5[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat5[2:3] %}
+												{% for post in cat5[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat5[3:4] %}
+												{% for post in cat5[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+										<div class="tab-pane" id="category-6" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat6[0:1] %}
+												{% for post in cat6[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat6[1:2] %}
+												{% for post in cat6[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat6[2:3] %}
+												{% for post in cat6[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat6[3:4] %}
+												{% for post in cat6[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+
+							<li class="mega-menu-item">
+								{% for cat in categorylist[6:7] %}
+								<a href="#">{{cat.name}}</a>
+								{% endfor %}
+
+								<div class="sub-mega-menu">
+									<div class="nav flex-column nav-pills" role="tablist">
+										<a class="nav-link active" data-toggle="pill" href="#category-7" role="tab">All</a>
+										{% for cat in categorylist[7:8] %}
+										<a class="nav-link" data-toggle="pill" href="#category-8" role="tab">{{cat.name}}</a>
+										{% endfor %}
+										{% for cat in categorylist[8:9] %}
+										<a class="nav-link" data-toggle="pill" href="#category-9" role="tab">{{cat.name}}</a>
+										{% endfor %}
+									</div>
+
+									<div class="tab-content">
+										<div class="tab-pane show active" id="category-7" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat7[0:1] %}
+												{% for post in cat7[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat7[1:2] %}
+												{% for post in cat7[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat7[2:3] %}
+												{% for post in cat7[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat7[3:4] %}
+												{% for post in cat7[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+										<div class="tab-pane" id="category-8" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat8[0:1] %}
+												{% for post in cat8[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat8[1:2] %}
+												{% for post in cat8[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat8[2:3] %}
+												{% for post in cat8[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat8[3:4] %}
+												{% for post in cat8[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+										<div class="tab-pane" id="category-9" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat9[0:1] %}
+												{% for post in cat9[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat9[1:2] %}
+												{% for post in cat9[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat9[2:3] %}
+												{% for post in cat9[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat9[3:4] %}
+												{% for post in cat9[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+
+							<li class="mega-menu-item">
+								{% for cat in categorylist[9:10] %}
+								<a href="#">{{cat.name}}</a>
+								{% endfor %}								
+
+								<div class="sub-mega-menu">
+									<div class="nav flex-column nav-pills" role="tablist">
+										<a class="nav-link active" data-toggle="pill" href="#category-10" role="tab">All</a>
+										{% for cat in categorylist[10:11] %}
+										<a class="nav-link" data-toggle="pill" href="#category-11" role="tab">{{cat.name}}</a>
+										{% endfor %}
+									</div>
+
+									<div class="tab-content">
+										<div class="tab-pane show active" id="category-10" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat10[0:1] %}
+												{% for post in cat10[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat10[1:2] %}
+												{% for post in cat10[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat10[2:3] %}
+												{% for post in cat10[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat10[3:4] %}
+												{% for post in cat10[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+										<div class="tab-pane" id="category-11" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat11[0:1] %}
+												{% for post in cat11[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat11[1:2] %}
+												{% for post in cat11[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat11[2:3] %}
+												{% for post in cat11[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat11[3:4] %}
+												{% for post in cat11[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</li>
+
+							<li class="mega-menu-item">
+								{% for cat in categorylist[11:12] %}
+								<a href="#">{{cat.name}}</a>
+								{% endfor %}
+
+								<div class="sub-mega-menu">
+									<div class="nav flex-column nav-pills" role="tablist">
+										<a class="nav-link active" data-toggle="pill" href="#category-12" role="tab">All</a>
+										{% for cat in categorylist[12:13] %}
+										<a class="nav-link" data-toggle="pill" href="#category-13" role="tab">{{cat.name}}</a>
+										{% endfor %}
+									</div>
+
+									<div class="tab-content">
+										<div class="tab-pane show active" id="category-12" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat12[0:1] %}
+												{% for post in cat12[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat12[1:2] %}
+												{% for post in cat12[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat12[2:3] %}
+												{% for post in cat12[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat12[3:4] %}
+												{% for post in cat12[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+
+										<div class="tab-pane" id="category-13" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat13[0:1] %}
+												{% for post in cat13[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat13[1:2] %}
+												{% for post in cat13[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat13[2:3] %}
+												{% for post in cat13[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat13[3:4] %}
+												{% for post in cat13[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</li>
+
+							<li class="mega-menu-item">
+								{% for cat in categorylist[13:14] %}
+								<a href="#">{{cat.name}}</a>
+								{% endfor %}
+
+								<div class="sub-mega-menu">
+									<div class="nav flex-column nav-pills" role="tablist">
+										<a class="nav-link active" data-toggle="pill" href="#category-14" role="tab">All</a>
+									</div>
+
+									<div class="tab-content">
+										<div class="tab-pane show active" id="category-14" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat14[0:1] %}
+												{% for post in cat14[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat14[1:2] %}
+												{% for post in cat14[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat14[2:3] %}
+												{% for post in cat14[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat14[3:4] %}
+												{% for post in cat14[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</li>
+
+							<li class="mega-menu-item">
+								{% for cat in categorylist[14:15] %}
+								<a href="#">{{cat.name}}</a>
+								{% endfor %}
+
+								<div class="sub-mega-menu">
+									<div class="nav flex-column nav-pills" role="tablist">
+										<a class="nav-link active" data-toggle="pill" href="#category-15" role="tab">All</a>
+									</div>
+
+									<div class="tab-content">
+										<div class="tab-pane show active" id="category-15" role="tabpanel">
+											<div class="row">
+												<div class="col-3">
+												<!-- Item post -->	
+												{% if cat15[0:1] %}
+												{% for post in cat15[0:1] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat15[1:2] %}
+												{% for post in cat15[1:2] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat15[2:3] %}
+												{% for post in cat15[2:3] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+
+												<div class="col-3">
+													<!-- Item post -->	
+												{% if cat15[3:4] %}
+												{% for post in cat15[3:4] %}
+												{% set fname = 'images/uploads/' + post.image %}
+													<div>
+														<a href="{{post.slug}}" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename=fname)}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="{{post.slug}}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	{{post.title}} 
+																</a>
+															</h5>
+															{% for cat in categories %}
+    														{% if post.category_id==cat.id %}
+
+															<span class="cl8">
+																<a href="/category/{{cat.name}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{cat.name}}
+																</a>
+															{% endif %}
+															{% endfor %}
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{post.date_pub.strftime('%d %B, %Y')}}
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+
+												{% else %}
+
+
+												<div>
+														<a href="#" class="wrap-pic-w hov1 trans-03">
+															<img src="{{url_for('static',filename='images/notfound.jpg')}}" alt="IMG">
+														</a>
+
+														<div class="p-t-10">
+															<h5 class="p-b-5">
+																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+																	Post Coming Soon 
+																</a>
+															</h5>
+
+															<span class="cl8">
+																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																	Category Coming Soon
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	Date Coming Soon
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+
+
+												{% endif %}
+											</div>
+										</div>
+
+									</div>
+								</div>
+								{% endif %}
+							</li>
+
+							<li>
+								<a href="#">Features</a>
+								<ul class="sub-menu">
+									<li><a href="/about">About Us</a></li>
+									<li><a href="/contact">Contact Us</a></li>
+									<li><a href="/bug-report-form" target="_blank">Report a Bug</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>	
+		</div>
+	</header>
+
+
+
+
+
+{% block body %}  {% endblock %}
+
+
+
+
+
+	<!-- Footer -->
+	<footer>
+		<div class="bg2 p-t-40 p-b-25">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 p-b-20">
+						<div class="size-h-3 flex-s-c">
+							<a href="/">
+								<img class="max-s-full" src="{{url_for('static', filename='images/icons/logo-02.png')}}" alt="{{ params['blog_name'] }}">
+							</a>
+						</div>
+
+						<div>
+							<p class="f1-s-1 cl11 p-b-16">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tempor magna eget elit efficitur, at accumsan sem placerat. Nulla tellus libero, mattis nec molestie at, facilisis ut turpis. Vestibulum dolor metus, tincidunt eget odio
+							</p>
+							<p class="f1-s-1 cl11 p-b-16">
+								Any questions? Call us on (+1) 96 716 6879
+							</p>
+							<p class="f1-s-1 cl11 p-b-16">
+								<a href="/bug-report-form" target="_blank">Report a Bug</a>
+							</p>
+							
+							<div class="p-t-15">
+								<a href="{{params['fb_url']}}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8" target="_blank">
+									<span class="fab fa-facebook-f"></span>
+								</a>
+
+								<a href="{{params['tw_url']}}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8" target="_blank">
+									<span class="fab fa-twitter"></span>
+								</a>
+
+								<a href="{{params['pin_url']}}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8" target="_blank">
+									<span class="fab fa-pinterest-p"></span>
+								</a>
+
+								<a href="{{params['vim_url']}}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8" target="_blank">
+									<span class="fab fa-vimeo-v"></span>
+								</a>
+
+								<a href="{{params['you_url']}}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8" target="_blank">
+									<span class="fab fa-youtube"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-6 col-lg-4 p-b-20">
+						<div class="size-h-3 flex-s-c">
+							<h5 class="f1-m-7 cl0">
+								Popular Posts
+							</h5>
+						</div>
+
+						<ul>
+							{% if views %}
+							{% for post in views[:3] %}
+							{% set fname = 'images/uploads/' + post.image %}
+							<li class="flex-wr-sb-s p-b-20">
+								<a href="/{{post.slug}}" class="size-w-4 wrap-pic-w hov1 trans-03">
+									<img src="{{url_for('static', filename=fname)}}" alt="IMG">
+								</a>
+
+								<div class="size-w-5">
+									<h6 class="p-b-5">
+										<a href="/{{post.slug}}" class="f1-s-5 cl11 hov-cl10 trans-03" style = "text-transform:capitalize;">
+											{{post.title}}
+										</a>
+									</h6>
+
+									<span class="f1-s-3 cl6">
+										{{post.date_pub.strftime('%d %B, %Y')}}
+									</span>
+								</div>
+							</li>
+						{% endfor %}
+						{% else %}
+						No Posts Available
+						{% endif %}
+							
+						</ul>
+						
+					</div>
+
+					<div class="col-sm-6 col-lg-4 p-b-20">
+						<div class="size-h-3 flex-s-c">
+							<h5 class="f1-m-7 cl0">
+								Category
+							</h5>
+						</div>
+
+						<ul class="m-t--12">
+							{% if categories %}
+							{% for cat in categories[:6] %}
+							<li class="how-bor1 p-rl-5 p-tb-10">
+								<a href="/category/{{cat.name}}" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+									{{cat.name}}
+								</a>
+							</li>
+							{% endfor %}
+							{% else %}
+							No Categories Available
+							{% endif %}
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="bg11">
+			<div class="container size-h-4 flex-c-c p-tb-15">
+				<span class="f1-s-1 cl0 txt-center">
+					
+
+					
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://pinakipb2.blogspot.com/" target="_blank">Pinaki</a>
+
+				</span>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<span class="fas fa-angle-up"></span>
+		</span>
+	</div>
+
+	<!-- Modal Video 01-->
+	<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document" data-dismiss="modal">
+			<div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+
+			<div class="wrap-video-mo-01">
+				<div class="video-mo-01">
+					<iframe src="https://www.youtube.com/embed/wJnBTPUQS5A?rel=0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--===============================================================================================-->	
+	<script src="{{url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{url_for('static', filename='vendor/animsition/js/animsition.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{url_for('static', filename='vendor/bootstrap/js/popper.js')}}"></script>
+	<script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+</body>
+</html>

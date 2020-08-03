@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="shortcut icon" href="{{url_for('static',filename='body/bugreport/images/favicon.ico')}}"/>
+<style>/* COMPACT CAPTCHA */
+
+.capbox {
+    background-color: #BEB17D;
+    background-image: linear-gradient(#D9F509, #ED0808);
+    border: #00A4FF 0px solid;
+    border-width: 2px 2px 2px 20px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: inline-block;
+    padding: 5px 8px 5px 8px;
+    border-radius: 4px 4px 4px 4px;
+    }
+
+.capbox-inner {
+    font: bold 12px arial, sans-serif;
+    color: #000000;
+    background-color: #F3EDCD;
+    margin: 0px auto 0px auto;
+    padding: 3px 10px 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    }
+
+#CaptchaDiv {
+    color: #000000;
+    font: normal 25px Impact, Charcoal, arial, sans-serif;
+    font-style: italic;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #FFFFFF;
+    user-select: none;
+    display: inline-block;
+    padding: 3px 14px 3px 8px;
+    margin-right: 4px;
+    border-radius: 4px;
+    }
+
+#CaptchaInput {
+    border: #295B00 1px solid;
+    margin: 3px 0px 1px 0px;
+    width: 105px;
+    }
+</style>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Bug Report Form | {{ params['blog_name'] }}</title>
+
+    <!-- Icons font CSS-->
+    <link href="{{url_for('static',filename='body/bugreport/vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{url_for('static',filename='body/bugreport/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{{url_for('static',filename='body/bugreport/vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{url_for('static',filename='body/bugreport/vendor/datepicker/daterangepicker.css')}}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{{url_for('static',filename='body/bugreport/css/main.css')}}" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+
+
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+   <div class="alert alert-success alert-dismissible">
+    {% for message in messages %}
+    <center><strong style="color:white;">Success! {{ message }} </strong></center>
+    {% endfor %}
+    </div><br><br><br>
+  {% endif %}
+{% endwith %}
+
+
+
+
+
+
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Bug Report Form</h2>
+                    <form method="POST" onsubmit="return checkform(this);" action="{{ url_for('bugreport') }}" enctype=multipart/form-data>
+                        <div class="row row-space">
+                            <div class="col-2">
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="SUBMITTED BY" name="submittedby" required>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="input-group">
+                            <input class="input--style-1" type="email" placeholder="EMAIL ID" name="email" required>
+                        </div>
+                    </div>
+                    </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="BUG TITLE" name="bugtitle" required>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="BUG DESCRIPTION" name="bugdescription" required>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="url" placeholder="URL WHERE BUG ENCOUNTERED" name="bugurl" required>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="PLATFORM ON WHICH BUG ENCOUNTERED" name="bugplatform" required>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="BROWSER USED" name="bugbrowser" required>
+                        </div>    
+                            </div>
+                            <div class="col-2">
+                            <div class="input-group">
+                                    <input class="input--style-1 js-datepicker" type="text" placeholder="DATE BUG ENCOUNTERED" name="bugdate" required>
+                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                        <label for="scrnshot">SCREENSHOTS DEMONSTRATING BUG'S BEHAVIOUR :</label><br><br>
+                        <input type="file" id="scrnshot" name="scrnshot" multiple accept="image/*"><br>
+                        <div class="label--desc">Upload screenshots here. Max file size 50 MB</div><br><br>
+                                </div> 
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="EXPECTED RESULT" name="bugexpected">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="ACTUAL RESULT" name="bugactual">
+                        </div>
+                          <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                     <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="frequency" id="frequency" required>
+                                            <option disabled="disabled" selected="selected" value="">FREQUENCY</option>
+                                            <option>EVERY TIME</option>
+                                            <option>HARDLY EVER</option>
+                                            <option>OCCASIONALLY</option>
+                                            <option>ONCE</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="priority" id="priority" required>
+                                            <option disabled="disabled" selected="selected" value="">PRIORITY</option>
+                                            <option>CRITICAL</option>
+                                            <option>HIGH</option>
+                                            <option>MEDIUM</option>
+                                            <option>LOW</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- START CAPTCHA -->FILL THE CAPTCHA: 
+<br><br>
+<div class="capbox">
+
+<div id="CaptchaDiv"></div>
+
+<div class="capbox-inner">
+Type the number:<br>
+
+<input type="hidden" id="txtCaptcha">
+<input type="text" name="CaptchaInput" id="CaptchaInput" size="15"><br>
+
+</div>
+</div>
+<br><br>
+<!-- END CAPTCHA -->
+
+                        <div class="p-t-20">
+                            <button class="btn btn--radius btn--green" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="{{url_for('static',filename='body/bugreport/vendor/jquery/jquery.min.js')}}"></script>
+    <!-- Vendor JS-->
+    <script src="{{url_for('static',filename='body/bugreport/vendor/select2/select2.min.js')}}"></script>
+    <script src="{{url_for('static',filename='body/bugreport/vendor/datepicker/moment.min.js')}}"></script>
+    <script src="{{url_for('static',filename='body/bugreport/vendor/datepicker/daterangepicker.js')}}"></script>
+
+    <!-- Main JS-->
+    <script src="{{url_for('static',filename='body/bugreport/js/global.js')}}"></script>
+
+<script type="text/javascript">
+// Captcha Script
+function checkform(theform){
+var why = "";
+
+if(theform.CaptchaInput.value == ""){
+why += "- Please Enter CAPTCHA Code.\n";
+}
+if(theform.CaptchaInput.value != ""){
+if(ValidCaptcha(theform.CaptchaInput.value) == false){
+why += "- The CAPTCHA Code Does Not Match.\n";
+}
+}
+if(why != ""){
+alert(why);
+return false;
+}
+}
+
+var a = Math.ceil(Math.random() * 7)+ '';
+var b = Math.ceil(Math.random() * 4)+ '';
+var c = Math.ceil(Math.random() * 3)+ '';
+var d = Math.ceil(Math.random() * 9)+ '';
+var e = Math.ceil(Math.random() * 5)+ '';
+
+var code = a + b + c + d + e;
+document.getElementById("txtCaptcha").value = code;
+document.getElementById("CaptchaDiv").innerHTML = code;
+
+// Validate input against the generated number
+function ValidCaptcha(){
+var str1 = removeSpaces(document.getElementById('txtCaptcha').value);
+var str2 = removeSpaces(document.getElementById('CaptchaInput').value);
+if (str1 == str2){
+return true;
+}else{
+return false;
+}
+}
+
+// Remove the spaces from the entered and generated code
+function removeSpaces(string){
+return string.split(' ').join('');
+}
+</script>
+
+</body>
+</html>
+<!-- end document-->

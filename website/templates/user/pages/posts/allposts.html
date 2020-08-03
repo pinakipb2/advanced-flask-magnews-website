@@ -1,0 +1,283 @@
+{% extends "user/layout.html" %}
+{% block title %}All Posts{% endblock %}
+{% block body %}
+
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li>
+          <a href="/user/dashboard">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-thumb-tack"></i>
+            <span>Posts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="{{url_for('user_all_posts')}}"><i class="fa fa-circle-o text-red"></i> All Posts</a></li>
+            <li><a href="{{url_for('user_add_post')}}"><i class="fa fa-circle-o text-yellow"></i> Add New</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/user/mail/compose"><i class="fa fa-circle-o text-red"></i> Compose</a></li>
+            <li><a href="/user/mail/inbox"><i class="fa fa-circle-o text-yellow"></i> Inbox</a></li>
+            <li><a href="/user/mail/sent"><i class="fa fa-circle-o text-aqua"></i> Sent</a></li>
+          </ul>
+        </li>
+
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user"></i> <span>Profile</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/user/profile"><i class="fa fa-circle-o text-red"></i> Profile</a></li>
+
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o text-yellow"></i> Options
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/user/profile-edit"><i class="fa fa-circle-o text-red"></i> Edit Profile</a></li>
+                <li><a href="/user/change-password"><i class="fa fa-circle-o text-yellow"></i> Change Password</a></li>
+                <li><a href="/user/two-step-verification"><i class="fa fa-circle-o text-aqua"></i> Two Step Verification</a></li>
+                <li><a href="/user/dark-mode"><i class="fa fa-circle-o text-maroon"></i> Dark Mode</a></li>
+              </ul>
+            </li>
+            <li><a href="/logout"><i class="fa fa-circle-o text-aqua"></i> Logout</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="/user/api">
+            <i class="fa fa-book"></i> <span>API</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+        <section class="content-header">
+      <h1>
+        All Posts
+        <small>Edit & Delete Posts</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/user/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/user/all-posts">Posts</a></li>
+        <li class="active">All Posts</li>
+      </ol>
+    </section>
+
+
+    <section class="content">
+      
+{% with messages = get_flashed_messages(category_filter=["success"]) %}
+  {% if messages %}
+    <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-check"></i> Success!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+      
+{% with messages = get_flashed_messages(category_filter=["warning"]) %}
+  {% if messages %}
+    <div class="alert alert-warning alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-warning"></i> Warning!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}   
+
+      
+{% with messages = get_flashed_messages(category_filter=["danger"]) %}
+  {% if messages %}
+    <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <i class="fa fa-pencil"></i>
+              <h3 class="box-title">Add Posts : </h3>
+              <a href="/user/add-post"><button type="button" class="btn bg-maroon margin">Add Post</button></a>
+            </div>
+              
+          </div>
+
+          <div class="box box-info">
+            <div class="box-header with-border">
+            	<i class="fa fa-file-text"></i>
+              <h3 class="box-title">Drafts</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Tilte</th>
+                  <th>Slug</th>
+                  <th>Category</th>
+                  <th>Image</th>
+                  <th>Started on</th>
+                  <th>Status</th>
+                  <th>Manage</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for post in posts %}
+                <tr>
+                  <td><center>{{post.id}}</center></td>
+                  <td>{{post.title}}</td>
+                  <td>{{post.slug}}</td>
+                  {% for cat in categories %}
+    			  {% if post.category_id==cat.id %}
+                  <td><center>{{cat.name}}</center></td>
+                  {% endif %}
+    			  {% endfor %}
+            {% set fname='images/uploads/' + post.image %}
+                  <td><center><img src="{{url_for('static',filename=fname)}}" width="96px", height="65px" alt="Image Not Available"></center></td>
+                  <td><center>{{post.date_pub.strftime('%d %B, %Y')}}</center></td>
+                  {% if post.draft==1 and post.status==0 %}
+                  <td><center><span class="label label-danger">Rejected</span></center></td>
+                  {% elif post.draft==1 %}
+                  <td><center><span class="label label-primary">Draft</span></center></td>
+                  {% elif post.draft==0 or post.status == None %}
+                  <td><center><span class="label label-warning">Pending</span></center></td>
+                  {% endif %}
+                  {% if post.draft==1 or post.status!=None %}
+                  <td><center><a href="/user/manage-post/{{post.id}}"><button type="submit" class="btn btn-success">Manage</button></a></center></td>
+                  {% else %}
+                  <td><center><button type="submit" class="btn btn-success disabled">Manage</button></center></td>
+                  {% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Id</th>
+                  <th>Tilte</th>
+                  <th>Slug</th>
+                  <th>Category</th>
+                  <th>Image</th>
+                  <th>Started on</th>
+                  <th>Status</th>
+                  <th>Manage</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+
+
+
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <i class="fa fa-file-text"></i>
+              <h3 class="box-title">Published</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example3" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Tilte</th>
+                  <th>Slug</th>
+                  <th>Category</th>
+                  <th>Image</th>
+                  <th>Views</th>
+                  <th>Published on</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for post in published %}
+                <tr>
+                  <td><center>{{post.id}}</center></td>
+                  <td><a href="/{{post.slug}}" target="_blank">{{post.title}}</a></td>
+                  <td>{{post.slug}}</td>
+                  {% for cat in categories %}
+            {% if post.category_id==cat.id %}
+                  <td><center>{{cat.name}}</center></td>
+                  {% endif %}
+            {% endfor %}
+            {% set fname='images/uploads/' + post.image %}
+                  <td><center><img src="{{url_for('static',filename=fname)}}" width="96px", height="65px" alt="Image not Available"></center></td>
+                  <td><center>{{post.views}}</center></td>
+                  <td><center>{{post.date_pub.strftime('%d %B, %Y')}}</center></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Id</th>
+                  <th>Tilte</th>
+                  <th>Slug</th>
+                  <th>Category</th>
+                  <th>Image</th>
+                  <th>Views</th>
+                  <th>Published on</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+
+</section>
+
+
+
+
+
+
+
+        <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+{% endblock %}

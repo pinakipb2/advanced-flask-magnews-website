@@ -1,0 +1,246 @@
+{% extends "user/layout.html" %}
+{% block title %}Inbox{% endblock %}
+{% block body %}
+
+
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li>
+          <a href="/user/dashboard">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-thumb-tack"></i>
+            <span>Posts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{url_for('user_all_posts')}}"><i class="fa fa-circle-o text-red"></i> All Posts</a></li>
+            <li><a href="{{url_for('user_add_post')}}"><i class="fa fa-circle-o text-yellow"></i> Add New</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/user/mail/compose"><i class="fa fa-circle-o text-red"></i> Compose</a></li>
+            <li class="active"><a href="/user/mail/inbox"><i class="fa fa-circle-o text-yellow"></i> Inbox</a></li>
+            <li><a href="/user/mail/sent"><i class="fa fa-circle-o text-aqua"></i> Sent</a></li>
+          </ul>
+        </li>
+
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user"></i> <span>Profile</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/user/profile"><i class="fa fa-circle-o text-red"></i> Profile</a></li>
+
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o text-yellow"></i> Options
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/user/profile-edit"><i class="fa fa-circle-o text-red"></i> Edit Profile</a></li>
+                <li><a href="/user/change-password"><i class="fa fa-circle-o text-yellow"></i> Change Password</a></li>
+                <li><a href="/user/two-step-verification"><i class="fa fa-circle-o text-aqua"></i> Two Step Verification</a></li>
+                <li><a href="/user/dark-mode"><i class="fa fa-circle-o text-maroon"></i> Dark Mode</a></li>
+              </ul>
+            </li>
+            <li><a href="/logout"><i class="fa fa-circle-o text-aqua"></i> Logout</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="/user/api">
+            <i class="fa fa-book"></i> <span>API</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Mailbox
+        {% if admin_mail_unread > 0 %}
+        <small>{{admin_mail_unread}} new messages</small>
+        {% else %}
+        <small>No new messages</small>
+        {% endif %}
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/user/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/user/mail/inbox">Mailbox</a></li>
+        <li class="active">Inbox</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      
+{% with messages = get_flashed_messages(category_filter=["success"]) %}
+  {% if messages %}
+    <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-check"></i> Success!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+      
+{% with messages = get_flashed_messages(category_filter=["warning"]) %}
+  {% if messages %}
+    <div class="alert alert-warning alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-warning"></i> Warning!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}   
+
+      
+{% with messages = get_flashed_messages(category_filter=["danger"]) %}
+  {% if messages %}
+    <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+
+      <div class="row">
+        <div class="col-md-3">
+          <a href="/user/mail/compose" class="btn btn-warning btn-block margin-bottom">Compose</a>
+
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Folders</h3>
+
+              <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body no-padding">
+              <ul class="nav nav-pills nav-stacked">
+                {% if admin_mail_unread > 0 %}
+                <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
+                  <span class="label label-success pull-right">{{admin_mail_unread}}</span></a></li>
+                  {% else %}
+                  <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox</a></li>
+                  {% endif %}
+                {% if mail_unread > 0 %}
+                <li><a href="/user/mail/sent"><i class="fa fa-envelope-o"></i> Sent<span class="label label-danger pull-right">{{mail_unread}}</span></a></li>
+                {% else %}
+                <li><a href="/user/mail/sent"><i class="fa fa-envelope-o"></i> Sent</a></li>
+                {% endif %}
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Inbox</h3>
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="table-responsive mailbox-messages">
+                <table class="table table-hover table-striped">
+                  <tbody>
+
+                  {% for m in inbox_mail %}
+                  <tr style="background-color: #fcf3ae">
+                    {% for cat in mail_senders %} 
+                    {% if m.admin_id==cat.id %}
+                    <td class="mailbox-name">From: <a href="/user/mail/admin-mail/{{m.id}}">{{cat.username}}</a></td>
+                    {% endif %}
+                    {% endfor %}
+
+                    <td class="mailbox-subject"><b>{{m.subject|truncate(30)}}</b> - {{m.message|truncate(50)}}</td>
+                    <td class="mailbox-date">{{m.date.strftime('%d %B, %Y; %I:%M %p')}}</td>
+                  </tr>
+                  {% endfor %}
+
+
+                  {% for m in admin_mail %}
+                  {% if m.read==True %}
+                  <tr style="background-color: #dadee8;">
+                    {% else %}
+                  <tr>
+                    {% endif %}
+                    {% for cat in admin_mail_senders %} 
+                    {% if m.admin_id==cat.id %}
+                    <td class="mailbox-name">From: <a href="/user/mail/admin-user-mail/{{m.id}}">{{cat.username}}</a></td>
+                    {% endif %}
+                    {% endfor %}
+                    <td class="mailbox-subject"><b>{{m.subject|truncate(30)}}</b> - {{m.message|truncate(50)}}</td>
+                    <td class="mailbox-date">{{m.date.strftime('%d %B, %Y; %I:%M %p')}}</td>
+                  </tr>
+                  {% endfor %}
+
+
+
+
+
+
+
+                  </tbody>
+                </table>
+                <!-- /.table -->
+              </div>
+              <!-- /.mail-box-messages -->
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer no-padding">
+            </div>
+          </div>
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+ 
+
+ {% endblock %}

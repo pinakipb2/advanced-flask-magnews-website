@@ -1,0 +1,26 @@
+{
+  "params":
+  {
+    "local_server": "True",
+    "local_uri":"mysql://root:@localhost/myblog",
+    "prod_uri": "mysql+pymysql://root:@localhost/myblog",
+    "fb_url": "https://www.facebook.com/magnews/",
+    "tw_url": "https://www.twitter.com/magnews/",
+    "pin_url": "https://www.pinterest.com/magnews/",
+    "vim_url": "https://www.vimeo.com/magnews/",
+    "you_url": "https://www.youtube.com/magnews/",
+    "blog_name": "Magnews",
+    "gmail_user" : "john@john.com",
+    "gmail_password" : "JohnDoe123",
+    "carousel_image1" : "post-10.jpg",
+    "carousel_image2" : "post-11.jpg",
+    "carousel_image3" : "post-14.jpg",
+    "carousel_image1_text" : "First Slide",
+    "carousel_image2_text" : "Second Slide",
+    "carousel_image3_text" : "Third Slide",
+    "upload_location" : "C:\\Users\\KIIT\\Desktop\\myblog\\website\\static\\images\\uploads",
+    "admindp_upload_location" : "C:\\Users\\KIIT\\Desktop\\myblog\\website\\static\\images\\admindp"
+  }
+
+
+}

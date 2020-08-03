@@ -1,0 +1,304 @@
+{% extends "admin/layout.html" %}
+{% block title %}All Users List{% endblock %}
+{% block body %}
+
+             <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li>
+          <a href="/admin/dashboard">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-thumb-tack"></i>
+            <span>Posts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{url_for('admin_all_posts')}}"><i class="fa fa-circle-o text-red"></i> All Posts</a></li>
+            <li><a href="{{url_for('admin_add_post')}}"><i class="fa fa-circle-o text-yellow"></i> Add New</a></li>
+            <li><a href="/admin/manage-user-posts"><i class="fa fa-circle-o text-aqua"></i> Manage User Posts</a></li>
+            <li><a href="/admin/published-posts"><i class="fa fa-circle-o text-orange"></i> Published Posts</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-tags"></i>
+            <span>Categories</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/all-categories"><i class="fa fa-circle-o text-red"></i> All Categories</a></li>
+            <li><a href="/admin/add-category"><i class="fa fa-circle-o text-yellow"></i> Add New</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="/admin/upload-image">
+            <i class="fa fa-image"></i> <span>Images</span>
+          </a>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/mail/compose"><i class="fa fa-circle-o text-red"></i> Compose</a></li>
+            <li><a href="/admin/mail/inbox"><i class="fa fa-circle-o text-yellow"></i> Inbox</a></li>
+            <li><a href="/admin/mail/sent"><i class="fa fa-circle-o text-aqua"></i> Sent</a></li>
+          </ul>
+        </li>
+
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user"></i> <span>Profile</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/profile"><i class="fa fa-circle-o text-red"></i> Profile</a></li>
+
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o text-yellow"></i> Options
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/admin/profile-edit"><i class="fa fa-circle-o text-red"></i> Edit Profile</a></li>
+                <li><a href="/admin/change-password"><i class="fa fa-circle-o text-yellow"></i> Change Password</a></li>
+                <li><a href="/admin/two-step-verification"><i class="fa fa-circle-o text-aqua"></i> Two Step Verification</a></li>
+                <li><a href="/admin/dark-mode"><i class="fa fa-circle-o text-maroon"></i> Dark Mode</a></li>
+              </ul>
+            </li>
+            <li><a href="/admin-logout"><i class="fa fa-circle-o text-aqua"></i> Logout</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="/admin/api">
+            <i class="fa fa-book"></i> <span>API</span>
+          </a>
+        </li>
+
+        <li class="header">EXTRAS</li>
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-users"></i>
+            <span>Manage All Users</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/all-admins"><i class="fa fa-circle-o text-red"></i> All Admins</a></li>
+            <li class="active"><a href="/admin/all-users"><i class="fa fa-circle-o text-yellow"></i> All Users</a></li>
+            <li><a href="/admin/add-user"><i class="fa fa-circle-o text-aqua"></i> Add User</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/admin/admin-registration-code">
+            <i class="fa fa-code"></i> <span>Admin Registration Code</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/contact-list">
+            <i class="fa fa-envelope"></i> <span>Contact</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/all-bug-reports">
+            <i class="fa fa-bug"></i> <span>Bug Reports</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+        <section class="content-header">
+      <h1>
+        Users List
+        <small>Manage User List</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{{url_for('admin_dash')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Users List</li>
+      </ol>
+    </section>
+
+
+    <section class="content">
+
+{% with messages = get_flashed_messages(category_filter=["success"]) %}
+  {% if messages %}
+    <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-check"></i> Success!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+      
+{% with messages = get_flashed_messages(category_filter=["warning"]) %}
+  {% if messages %}
+    <div class="alert alert-warning alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-warning"></i> Warning!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}   
+
+      
+{% with messages = get_flashed_messages(category_filter=["danger"]) %}
+  {% if messages %}
+    <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+      
+
+
+
+
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <i class="fa fa-user"></i>
+              <h3 class="box-title">Add User : </h3>
+              <a href="/admin/add-user"><button type="button" class="btn bg-orange margin">Add User</button></a>
+            </div>
+              
+          </div>
+
+
+
+            <div class="box box-info">
+            <div class="box-header with-border">
+              <i class="fa fa-users"></i>
+              <h3 class="box-title">Users List</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Date & Time</th>
+                  <th>Ban/Unban</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for items in user_list %}
+                <tr>
+                  <td>{{items.id}}</td>
+                  <td>{{items.name|safe}}</td>
+                  <td>{{items.username}}</td>
+                  <td>{{items.email|safe}}</td>
+                  {% if items.activate==True %}
+                  <td><center><span class="label label-success">Verified</span></center></td>
+                  {% else %}
+                  <td><center><span class="label label-danger">Unverified</span></center></td>
+                  {% endif %}
+                  <td>{{items.date.strftime('%d %B, %Y ; %I:%M %p')}}</td>
+{% if items.activate==True %}
+
+{% if items.ban==False %}
+          <form action="/admin/ban-user/{{items.id}}" method="POST">        
+                  <td><center>
+
+
+                    <button type="submit" class="btn btn-danger" >Ban</button>
+
+
+                  </center></td></form>
+
+{% else %}
+
+
+
+<form action="/admin/unban-user/{{items.id}}" method="POST">
+                  <td><center>
+
+<button type="submit" class="btn btn-success">
+                Unban
+              </button>
+
+                  </center></td></form>
+
+{% endif %}
+
+{% else %}
+<td><center><span class="label label-danger">Option Unavailable</span></center></td>
+{% endif %}
+
+                </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Date & Time</th>
+                  <th>Ban/Unban</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+
+
+    
+
+
+</section>
+
+
+
+  
+
+
+
+        <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+{% endblock %}

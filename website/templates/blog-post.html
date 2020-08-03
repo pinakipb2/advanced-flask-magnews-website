@@ -1,0 +1,200 @@
+{% extends "layout.html" %}
+{% block title %}{{post.title}}{% endblock %}
+<script id="dsq-count-scr" src="//magnews-flask.disqus.com/count.js" async></script>
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+   <div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+ 
+    {% for message in messages %}
+      
+
+    <strong>Success!</strong> {{ message }}
+  
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+	<!-- Breadcrumb -->
+	<div class="container">
+		<div class="headline bg0 flex-wr-sb-c p-rl-20 p-tb-8">
+			<div class="f2-s-1 p-r-30 m-tb-6">
+				<a href="/" class="breadcrumb-item f1-s-3 cl9">
+					Home 
+				</a>
+
+				{% for cat in categories %} 
+				{% if post.category_id==cat.id %}
+				<a href="/category/{{cat.name}}" class="breadcrumb-item f1-s-3 cl9">
+					{{cat.name}} 
+				</a>
+				{% endif %}
+				{% endfor %}
+
+				<span class="breadcrumb-item f1-s-3 cl9" style = "text-transform:capitalize;">
+					{{post.title}}
+				</span>
+			</div>
+			<form class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6" action="{{url_for('result')}}">
+				<input class="f1-s-1 cl6 plh9 s-full p-l-25 p-r-45" type="search" name="search" placeholder="Search">
+				<button class="flex-c-c size-a-1 ab-t-r fs-20 cl2 hov-cl10 trans-03">
+					<i class="zmdi zmdi-search"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+			
+	<!-- Content -->
+	<section class="bg0 p-b-70 p-t-5">
+		<!-- Title -->
+		{% set fname = 'images/uploads/' + post.image %}
+		<div class="bg-img1 size-a-18 how-overlay1" style="background-image: url({{ url_for('static',filename=fname) }});">
+			<div class="container h-full flex-col-e-c p-b-58">
+				{% for cat in categories %} 
+				{% if post.category_id==cat.id %}
+				<a href="/category/{{cat.name}}" class="f1-s-10 cl0 hov-cl10 trans-03 text-uppercase txt-center m-b-33">
+					{{cat.name}}
+				</a>
+				{% endif %}
+				{% endfor %} 
+
+				<h3 class="f1-l-5 cl0 p-b-16 txt-center respon2" style = "text-transform:capitalize;">
+					{{post.title}}
+				</h3>
+
+				<div class="flex-wr-c-s">
+					<span class="f1-s-3 cl0 m-rl-7 txt-center">
+						{% for aut in writers %}
+						{% if post.user_id==aut.id %}
+						<a href="/author/{{aut.name}}" class="f1-s-4 cl0 hov-cl10 trans-03">
+							by {{aut.name}}
+						</a>
+						{% endif %}
+						{% endfor %}
+
+						<span class="m-rl-3">-</span>
+
+						<span>
+							{{post.date_pub.strftime('%d %B, %Y')}}
+						</span>
+					</span>
+
+					<span class="f1-s-3 cl0 m-rl-7 txt-center">
+						{{post.views}} Views
+					</span>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- Detail -->
+		<div class="container p-t-82">
+			<div class="row justify-content-center">
+				<div class="col-md-10 col-lg-8 p-b-100">
+					<div class="p-r-10 p-r-0-sr991">
+						<!-- Blog Detail -->
+						<div class="p-b-70">
+							<p class="f1-s-11 cl6 p-b-25" style="text-align:justify;">
+								{{post.body|safe}}
+							</p>
+
+							<!-- Tag -->
+							<div class="flex-s-s p-t-12 p-b-15">
+								<span class="f1-s-12 cl5 m-r-8">
+									Tags:
+								</span>
+								
+								<div class="flex-wr-s-s size-w-0">
+									{% for cat in categories %}
+									{% if post.category_id==cat.id %}
+									<a href="/category/{{cat.name}}" class="f1-s-12 cl8 hov-link1 m-r-15">
+										{{cat.name}}
+									</a>
+									{% endif %}
+									{% endfor %} 
+
+									
+								</div>
+							</div>
+
+								<!-- Share -->
+							<div class="flex-s-s">
+								<span class="f1-s-12 cl5 p-t-1 m-r-15">
+									Share:
+								</span>
+								
+								<div class="flex-wr-s-s size-w-0">
+									<a href="#" class="dis-block f1-s-13 cl0 bg-facebook borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+										<i class="fab fa-facebook-f m-r-7"></i>
+										Facebook
+									</a>
+
+									<a href="#" class="dis-block f1-s-13 cl0 bg-twitter borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+										<i class="fab fa-twitter m-r-7"></i>
+										Twitter
+									</a>
+
+									<a href="#" class="dis-block f1-s-13 cl0 bg-google borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+										<i class="fab fa-google-plus-g m-r-7"></i>
+										Google+
+									</a>
+
+									<a href="#" class="dis-block f1-s-13 cl0 bg-pinterest borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+										<i class="fab fa-pinterest-p m-r-7"></i>
+										Pinterest
+									</a>
+								</div>
+							</div>
+						</div>
+  
+
+                        
+						<!-- Leave a comment -->
+						<div>
+							<h4 class="f1-l-4 cl3 p-b-12">
+								Leave a Comment
+							</h4>				
+	
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = {{post.slug}};  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = {{post.slug}}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://magnews-flask.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+</div>
+
+					</div>
+				</div>
+				
+				<div class="col-md-10 col-lg-4 p-b-100">
+					<div class="p-l-10 p-rl-0-sr991">
+						<!-- Banner -->
+						<div class="flex-c-s">
+							<a href="{{params['sidebar_ad_url']}}" target="_blank">
+								<img class="max-w-full" src="{{url_for('static',filename='images/banner-02.jpg')}}" alt="IMG">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
