@@ -39,11 +39,11 @@ Start MySQL then go to the root folder where the files are stored, Create a virt
 ```
 pip install requirements.txt
 ```
+ ### For database :
+ Run the following commands :
  ```
  python
  ```
- ### For database :
- Run the following commands
  ```
  from website import db
  ```
@@ -56,6 +56,8 @@ pip install requirements.txt
  OR
  
  import the sql dump from the "Demo SQL File" folder.
+ 
+ Then start the server by typing : 
  ```
  python run.py 
  ```
