@@ -35,16 +35,15 @@ Download from [GitHub releases](https://github.com/pinakipb2/advanced-flask-magn
 - You may import demo values if requires or can start fresh!
 
 ## Code to run:
-Start MySQL then go to the root folder where the files are stored and run the follwing commands one after the other:
-```
-.\env\Scripts\activate
-```
+Start MySQL then go to the root folder where the files are stored, Create a virtual environment and activate it and run the follwing commands after that:
 ```
 pip install requirements.txt
 ```
  ```
  python
  ```
+ ### For database :
+ Run the following commands
  ```
  from website import db
  ```
@@ -54,6 +53,9 @@ pip install requirements.txt
  ```
  exit()
  ```
+ OR
+ 
+ import the sql dump from the "Demo SQL File" folder.
  ```
  python run.py 
  ```
