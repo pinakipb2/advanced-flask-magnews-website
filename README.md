@@ -37,7 +37,7 @@ Download from [GitHub releases](https://github.com/pinakipb2/advanced-flask-magn
 ## Code to run:
 Start MySQL then go to the root folder where the files are stored, Create a virtual environment and activate it and run the follwing commands after that:
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
  ### For database :
  Run the following commands :
